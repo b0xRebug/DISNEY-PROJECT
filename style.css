@@ -1,0 +1,909 @@
+/* =============================================================
+   STYLE.CSS — Feuille de style principale Disney+
+   Projet BTS SIO — Reproduction maquette Disney+
+
+   TABLE DES MATIÈRES :
+   1.  Variables CSS & Reset
+   2.  Utilitaires (container, sr-only, boutons)
+   3.  Header
+   4.  Section Hero
+   5.  Section Exclusive (Seulement sur Disney+)
+   6.  Section Plans (Tableau des abonnements)
+   7.  Section Watch (Regardez selon vos envies)
+   8.  Section Benefits (3 avantages)
+   9.  Section FAQ (Accordéon)
+   10. Section Devices (Appareils compatibles)
+   11. Footer
+   12. Media Queries Responsive
+   ============================================================= */
+
+
+/* =============================================================
+   1. VARIABLES CSS & RESET
+   ============================================================= */
+:root {
+  /* Couleurs principales */
+  --color-bg:            #040714;   /* Fond principal très sombre */
+  --color-bg-alt:        #0b0d18;   /* Fond légèrement différent pour sections alternées */
+  --color-bg-card:       #16192a;   /* Fond des cartes */
+  --color-text:          #ffffff;
+  --color-text-muted:    #8b8e9e;   /* Texte grisé secondaire */
+  --color-cyan:          #0dcff5;   /* Bouton S'INSCRIRE et accents */
+  --color-cyan-hover:    #00b8da;
+  --color-border:        #252840;
+  --color-highlight-bg:  #0e1e3d;   /* Fond colonne Standard mise en avant */
+  --color-highlight-bd:  #1a5dc8;   /* Bordure colonne Standard */
+
+  /* Typographie */
+  --font: 'Arial', 'Helvetica Neue', sans-serif;
+
+  /* Espacements */
+  --gap-xs:  0.5rem;
+  --gap-sm:  1rem;
+  --gap-md:  2rem;
+  --gap-lg:  4rem;
+  --gap-xl:  6rem;
+
+  /* Bordures arrondies */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Transitions */
+  --tr-fast:   0.2s ease;
+  --tr-normal: 0.3s ease;
+  --tr-slow:   0.5s ease;
+
+  --max-w: 1200px;
+}
+
+/* Reset universel */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+ul  { list-style: none; }
+a   { color: inherit; text-decoration: none; }
+
+
+/* =============================================================
+   2. UTILITAIRES GLOBAUX
+   ============================================================= */
+
+/* Texte lisible uniquement par les lecteurs d'écran (accessibilité) */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Conteneur centré */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--gap-md);
+}
+
+/* Titres de section */
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: var(--gap-md);
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 1.1rem;
+  margin-bottom: var(--gap-md);
+}
+
+.section-eyebrow {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: var(--gap-sm);
+}
+
+/* --- BOUTONS --- */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color var(--tr-fast), border-color var(--tr-fast);
+  text-decoration: none;
+  font-family: var(--font);
+}
+
+/* Bouton principal : fond cyan */
+.btn--primary {
+  background-color: var(--color-cyan);
+  color: #000;
+  border-color: var(--color-cyan);
+  white-space: nowrap;
+}
+.btn--primary:hover { background-color: var(--color-cyan-hover); }
+
+/* Bouton contour blanc (header) */
+.btn--outline {
+  background-color: transparent;
+  color: var(--color-text);
+  border-color: var(--color-text);
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+}
+.btn--outline:hover { background-color: rgba(255,255,255,0.1); }
+
+/* Bouton dans le tableau des abonnements */
+.btn--plan {
+  display: block;
+  width: 100%;
+  background-color: var(--color-cyan);
+  color: #000;
+  border-color: var(--color-cyan);
+  padding: 0.55rem 0.5rem;
+  font-size: 0.8rem;
+  border-radius: var(--radius-sm);
+  margin-top: var(--gap-xs);
+  font-family: var(--font);
+  cursor: pointer;
+}
+.btn--plan:hover { background-color: var(--color-cyan-hover); }
+
+
+/* =============================================================
+   3. HEADER
+   Navigation fixe avec fond semi-transparent + effet blur
+   ============================================================= */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(4, 7, 20, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  transition: box-shadow var(--tr-normal);
+}
+
+.header.is-scrolled {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.6);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem var(--gap-md);
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.header__logo img { height: 28px; width: auto; }
+
+
+/* =============================================================
+   4. SECTION HERO
+   Fond = original_2.jpeg (grille de posters avec logo Disney+ centré)
+   Par-dessus : overlay sombre + logo blanc + titre + formulaire
+   ============================================================= */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Conteneur de l'image de fond */
+.hero__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__backdrop-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* L'image couvre tout sans se déformer */
+  object-position: center;
+}
+
+/* Overlay dégradé : rend le texte blanc lisible sur les images colorées */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(4, 7, 20, 0.55) 0%,
+    rgba(4, 7, 20, 0.35) 30%,
+    rgba(4, 7, 20, 0.75) 70%,
+    rgba(4, 7, 20, 1.00) 100%
+  );
+}
+
+/* Contenu du hero, au-dessus de l'overlay (z-index: 2) */
+.hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  padding: 8rem var(--gap-md) var(--gap-xl);
+  margin: 0 auto;
+}
+
+/* Logo Disney+ centré dans le hero */
+.hero__logo {
+  height: 56px;
+  width: auto;
+  margin: 0 auto var(--gap-md);
+}
+
+/* Grand titre principal */
+.hero__title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: var(--gap-sm);
+}
+
+.hero__subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: var(--gap-sm);
+}
+
+.hero__description {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--gap-sm);
+}
+
+/* Formulaire : champ email + bouton sur la même ligne */
+.hero__form {
+  display: flex;
+  gap: var(--gap-xs);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: var(--gap-sm);
+}
+
+.hero__input {
+  flex: 1;
+  min-width: 260px;
+  max-width: 380px;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  background-color: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color var(--tr-fast);
+}
+.hero__input::placeholder { color: rgba(255,255,255,0.55); }
+.hero__input:focus        { border-color: var(--color-cyan); }
+
+/* Notes légales sous le formulaire */
+.hero__legal {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-top: var(--gap-xs);
+  line-height: 1.5;
+}
+.hero__legal--small { font-size: 0.72rem; }
+.hero__legal-link   { color: var(--color-cyan); text-decoration: underline; }
+
+/* Flèche de scroll animée */
+.hero__scroll-arrow {
+  position: absolute;
+  bottom: var(--gap-md);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(10px); }
+}
+
+
+/* =============================================================
+   5. SECTION EXCLUSIVE (Seulement sur Disney+)
+   Layout desktop : texte à gauche, image Shogun+posters à droite
+   Sur tablette/mobile : empilé verticalement, image portrait
+   ============================================================= */
+.exclusive {
+  background-color: var(--color-bg-alt);
+  padding: var(--gap-xl) 0;
+}
+
+/* Flexbox : 2 colonnes côte à côte sur desktop */
+.exclusive__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-lg);
+}
+
+.exclusive__left {
+  flex: 0 0 320px; /* Largeur fixe pour la colonne de texte */
+  min-width: 0;
+}
+
+.exclusive__description {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: var(--gap-xs);
+}
+
+.exclusive__copyright {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  opacity: 0.7;
+}
+
+.exclusive__right {
+  flex: 1;
+  min-width: 0;
+}
+
+/* L'image prend toute la largeur disponible */
+.exclusive__img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+}
+
+/*
+  Gestion des deux versions de l'image :
+  - exclusive__img--desktop : original_4.jpeg (paysage 2160×1050)  → visible sur desktop
+  - exclusive__img--mobile  : original_3.jpeg (portrait 750×600)   → visible sur tablette/mobile
+*/
+.exclusive__img--desktop { display: block; }
+.exclusive__img--mobile  { display: none;  }
+
+
+/* =============================================================
+   6. SECTION PLANS (Tableau comparatif des abonnements)
+   ============================================================= */
+.plans {
+  padding: var(--gap-xl) 0;
+  background-color: var(--color-bg);
+}
+
+/* Wrapper avec scroll horizontal pour mobile */
+.plans__table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.plans__table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 580px;
+  background-color: #0a0c17;
+}
+
+/* En-têtes de colonnes */
+.plans__th {
+  padding: var(--gap-md) var(--gap-sm);
+  text-align: center;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+}
+.plans__th:last-child { border-right: none; }
+
+/* Colonne des libellés (vide en haut à gauche) */
+.plans__th--empty { width: 38%; }
+
+/* Colonne Standard : fond légèrement bleuté, bordure bleue */
+.plans__th--highlighted {
+  background-color: var(--color-highlight-bg);
+  border-color: var(--color-highlight-bd);
+}
+
+/* Bloc de l'en-tête d'une offre */
+.plan-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.plan-header__name {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+}
+
+.plan-header__price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-text);
+}
+
+.plan-header__period {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+/* Cellules de données */
+.plans__td {
+  padding: var(--gap-sm);
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  vertical-align: middle;
+}
+.plans__td:last-child { border-right: none; }
+
+.plans__td--highlighted {
+  background-color: rgba(14, 30, 61, 0.5);
+  border-color: var(--color-highlight-bd);
+  color: var(--color-text);
+}
+
+/* Libellés des fonctionnalités (colonne gauche du tbody) */
+.plans__feature-label {
+  padding: var(--gap-sm);
+  text-align: left;
+  color: var(--color-text);
+  font-weight: 400;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  vertical-align: middle;
+  /* En HTML, <th> dans <tbody> ne s'affiche pas comme une cellule par défaut */
+  display: table-cell;
+}
+
+/* Icônes de coche / croix */
+.plans__icon {
+  width: 20px;
+  height: 20px;
+  margin: 0 auto;
+}
+.plans__icon--cross { opacity: 0.45; }
+
+/* Bouton d'information (icône "i") */
+.plans__info-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 4px;
+  vertical-align: middle;
+  opacity: 0.6;
+  transition: opacity var(--tr-fast);
+}
+.plans__info-btn:hover { opacity: 1; }
+.plans__info-btn img   { width: 13px; height: 13px; display: inline; }
+
+/* Notes légales sous le tableau */
+.plans__footnotes {
+  margin-top: var(--gap-md);
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+.plans__footnotes p + p { margin-top: 0.4rem; }
+
+
+/* =============================================================
+   7. SECTION WATCH (Regardez selon vos envies)
+   original.jpeg (desktop) / original_1.jpeg (mobile)
+   ============================================================= */
+.watch {
+  padding: var(--gap-xl) 0;
+  background-color: var(--color-bg-alt);
+}
+
+.watch__mockup {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.watch__img { width: 100%; border-radius: var(--radius-md); }
+
+/* Même logique que pour l'image exclusive :
+   version desktop visible → version mobile cachée */
+.watch__img--desktop { display: block; }
+.watch__img--mobile  { display: none;  }
+
+
+/* =============================================================
+   8. SECTION BENEFITS (3 avantages)
+   ============================================================= */
+.benefits {
+  padding: var(--gap-xl) 0;
+  background-color: var(--color-bg);
+}
+
+/* Flexbox : 3 cartes sur la même ligne */
+.benefits__grid {
+  display: flex;
+  gap: var(--gap-md);
+  justify-content: center;
+  align-items: stretch;
+}
+
+.benefit-card {
+  flex: 1;
+  max-width: 360px;
+  text-align: center;
+  padding: var(--gap-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-card);
+  transition: border-color var(--tr-normal);
+}
+.benefit-card:hover { border-color: rgba(13, 207, 245, 0.4); }
+
+/* Icône : on fixe la taille du conteneur, pas de l'image elle-même */
+.benefit-card__icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto var(--gap-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.benefit-card__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.benefit-card__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: var(--gap-xs);
+}
+
+.benefit-card__desc {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+
+/* =============================================================
+   9. SECTION FAQ (Accordéon interactif)
+
+   MÉCANIQUE CSS :
+   - Par défaut, .faq__answer a max-height: 0 → contenu invisible
+   - Quand le JS ajoute "is-open" sur .faq__item :
+       → max-height passe à 500px → transition fluide
+       → l'icône dans .faq__icon change de "+" à "−"
+   ============================================================= */
+.faq {
+  padding: var(--gap-xl) 0;
+  background-color: var(--color-bg-alt);
+}
+
+.faq .container { max-width: 860px; }
+
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* Un item FAQ : question + réponse */
+.faq__item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background-color: var(--color-bg-card);
+  transition: border-color var(--tr-fast);
+}
+.faq__item:hover { border-color: rgba(255,255,255,0.15); }
+
+/* Bouton de question (cliquable) */
+.faq__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-sm);
+  padding: var(--gap-md);
+  background: none;
+  border: none;
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font);
+  transition: background-color var(--tr-fast);
+}
+.faq__question:hover  { background-color: rgba(255,255,255,0.03); }
+.faq__question:focus  { outline: 2px solid var(--color-cyan); outline-offset: -2px; }
+
+/* Icône + / − (flex-shrink: 0 pour qu'elle ne rétrécisse pas) */
+.faq__icon {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--color-text);
+  flex-shrink: 0;
+  line-height: 1;
+  width: 28px;
+  text-align: center;
+}
+
+/* Panneau réponse : caché par défaut via max-height: 0 */
+.faq__answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s ease;
+}
+.faq__answer p,
+.faq__answer ul {
+  padding: 0 var(--gap-md) var(--gap-md);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+.faq__answer ul {
+  padding-left: calc(var(--gap-md) + 1.2rem);
+  list-style: disc;
+}
+.faq__answer ul li + li { margin-top: 0.25rem; }
+
+/* === ÉTAT OUVERT (ajouté par le JS) === */
+.faq__item.is-open .faq__answer  { max-height: 500px; }
+.faq__item.is-open .faq__question { background-color: rgba(255,255,255,0.03); }
+
+
+/* =============================================================
+   10. SECTION DEVICES (Appareils compatibles)
+   CSS Grid 4 colonnes sur desktop
+   ============================================================= */
+.devices {
+  padding: var(--gap-xl) 0;
+  background-color: var(--color-bg);
+  border-top: 1px solid var(--color-border);
+}
+
+/* 4 colonnes égales */
+.devices__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap-md);
+  margin-top: var(--gap-md);
+}
+
+.device-category { text-align: center; }
+
+.device-category__icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto var(--gap-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.device-category__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.device-category__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: var(--gap-sm);
+  padding-bottom: var(--gap-xs);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.device-category__list {
+  text-align: left;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  line-height: 2.1;
+}
+
+
+/* =============================================================
+   11. FOOTER
+   ============================================================= */
+.footer {
+  background-color: var(--color-bg-alt);
+  padding: var(--gap-lg) 0 var(--gap-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.footer__logo { margin-bottom: var(--gap-md); }
+.footer__logo img { height: 26px; width: auto; }
+
+/* Liste de liens en flex avec retour à la ligne */
+.footer__nav { margin-bottom: var(--gap-md); }
+.footer__nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem var(--gap-sm);
+}
+.footer__nav-list a {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  transition: color var(--tr-fast);
+}
+.footer__nav-list a:hover { color: var(--color-text); text-decoration: underline; }
+
+/* Sélecteur de langue */
+.footer__language { margin-bottom: var(--gap-md); }
+.footer__language-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-xs);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.75rem;
+}
+.footer__language-wrapper img {
+  width: 15px; height: 15px;
+  display: inline;
+  filter: brightness(0) invert(0.6);
+}
+.footer__language-select {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  font-size: 0.82rem;
+  cursor: pointer;
+  outline: none;
+  font-family: var(--font);
+}
+.footer__language-select option { background-color: var(--color-bg-card); }
+
+.footer__copyright {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  opacity: 0.55;
+}
+
+
+/* =============================================================
+   12. MEDIA QUERIES — RESPONSIVE DESIGN
+   Breakpoints :
+   → 1024px : Tablette (iPad paysage)
+   → 768px  : Tablette (portrait)
+   → 640px  : Mobile
+   ============================================================= */
+
+/* -----------------------------------------------
+   TABLETTE PAYSAGE (≤ 1024px)
+   ----------------------------------------------- */
+@media (max-width: 1024px) {
+
+  .section-title    { font-size: 1.6rem; }
+  .hero__title      { font-size: 2rem; }
+
+  /* La colonne texte de "Exclusive" devient plus étroite */
+  .exclusive__left  { flex: 0 0 260px; }
+
+  /* Appareils : 2 colonnes sur 4 */
+  .devices__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* -----------------------------------------------
+   TABLETTE PORTRAIT (≤ 768px)
+   ----------------------------------------------- */
+@media (max-width: 768px) {
+
+  /* Section Exclusive : empilée verticalement */
+  .exclusive__inner {
+    flex-direction: column;
+    gap: var(--gap-md);
+  }
+
+  .exclusive__left  { flex: none; width: 100%; }
+
+  /*
+    Basculement des images "Exclusive" :
+    - On cache l'image paysage (desktop)
+    - On affiche l'image portrait (mobile/tablette)
+  */
+  .exclusive__img--desktop { display: none; }
+  .exclusive__img--mobile  { display: block; }
+
+  /*
+    Basculement des images "Watch" :
+    - On cache l'image ultra-large (desktop)
+    - On affiche la version compacte (tablette/mobile)
+  */
+  .watch__img--desktop { display: none; }
+  .watch__img--mobile  { display: block; }
+
+  /* Avantages : colonne unique */
+  .benefits__grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .benefit-card { width: 100%; max-width: 100%; }
+}
+
+/* -----------------------------------------------
+   MOBILE (≤ 640px)
+   ----------------------------------------------- */
+@media (max-width: 640px) {
+
+  :root {
+    --gap-lg: 2.5rem;
+    --gap-xl: 3rem;
+  }
+
+  /* Header */
+  .header__logo img { height: 22px; }
+
+  /* Hero */
+  .hero__title    { font-size: 1.55rem; }
+  .hero__subtitle { font-size: 0.95rem; }
+
+  /* Formulaire en colonne sur mobile */
+  .hero__form       { flex-direction: column; align-items: stretch; }
+  .hero__input      { min-width: unset; max-width: 100%; }
+
+  /* Tableau des abonnements :
+     On laisse le scroll horizontal (overflow-x: auto déjà défini)
+     On réduit les tailles de police */
+  .plans__table     { font-size: 0.75rem; min-width: 460px; }
+  .plans__th,
+  .plans__td,
+  .plans__feature-label { padding: 0.6rem 0.5rem; }
+  .plan-header__price   { font-size: 1.1rem; }
+  .plan-header__name    { font-size: 0.65rem; }
+  .btn--plan            { font-size: 0.7rem; padding: 0.4rem 0.3rem; }
+
+  /* Appareils : 2 colonnes sur mobile */
+  .devices__grid { grid-template-columns: repeat(2, 1fr); gap: var(--gap-sm); }
+
+  /* Footer : liens en colonne */
+  .footer__nav-list { flex-direction: column; gap: 0.3rem; }
+}
+
+/* -----------------------------------------------
+   TRÈS PETIT MOBILE (≤ 380px)
+   ----------------------------------------------- */
+@media (max-width: 380px) {
+  .hero__title { font-size: 1.3rem; }
+  .devices__grid { grid-template-columns: 1fr 1fr; }
+}

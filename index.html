@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Disney+ | Nouvelles productions originales, grands films, séries cultes et encore + en streaming</title>
+  <link rel="icon" href="assets/img-disney-plus/favicon-v2.ico" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- =============================================
+       HEADER — Barre de navigation fixe en haut
+       ============================================= -->
+  <header class="header">
+    <div class="header__inner">
+      <a href="#" class="header__logo" aria-label="Disney+ — Accueil">
+        <img src="assets/img-disney-plus/grand-logo-disney-plus.png" alt="Logo Disney+" />
+      </a>
+      <a href="#" class="btn btn--outline">S'IDENTIFIER</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =============================================
+         SECTION 1 : HERO
+         Fond = original_2.jpeg (grille de posters avec logo Disney+ au centre)
+         Par-dessus : logo blanc, grand titre, formulaire email
+         ============================================= -->
+    <section class="hero" aria-labelledby="hero-title">
+
+      <!-- Image de fond : grille de posters (original_2.jpeg) -->
+      <div class="hero__backdrop" aria-hidden="true">
+        <img src="assets/img-disney-plus/original_2.jpeg" alt="" class="hero__backdrop-img" />
+      </div>
+      <!-- Overlay dégradé sombre pour la lisibilité du texte blanc -->
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <!-- Contenu central du hero, par-dessus le fond -->
+      <div class="hero__content">
+        <!-- Grand logo Disney+ blanc centré -->
+        <img
+          src="assets/img-disney-plus/grand-logo-disney-plus.png"
+          alt="Disney+"
+          class="hero__logo"
+        />
+
+        <!-- Titre h1 principal (balise la plus importante pour le SEO) -->
+        <h1 id="hero-title" class="hero__title">
+          Nouvelles productions originales, grands films, séries cultes et encore + en streaming
+        </h1>
+
+        <p class="hero__subtitle">Sans coût additionnel. Sans engagement.*</p>
+        <p class="hero__description">
+          Entrez votre adresse e-mail pour commencer ou réactiver votre abonnement.
+        </p>
+
+        <!-- Formulaire email + bouton cyan S'INSCRIRE -->
+        <div class="hero__form" role="group" aria-label="Formulaire d'inscription">
+          <input
+            type="email"
+            class="hero__input"
+            placeholder="Adresse e-mail"
+            aria-label="Votre adresse e-mail"
+          />
+          <button class="btn btn--primary">S'INSCRIRE</button>
+        </div>
+
+        <p class="hero__legal">
+          Profitez de 12 mois au prix de 10 avec un abonnement Premium ou Standard annuel.
+          Économisez par rapport à un abonnement mensuel.
+          <a href="#" class="hero__legal-link">En savoir plus sur les offres.</a>
+        </p>
+        <p class="hero__legal hero__legal--small">
+          * La réduction prend effet à la fin de la période d'abonnement en cours.
+          Abonnement requis. Découvrez l'app.
+        </p>
+      </div>
+
+      <!-- Flèche de défilement animée -->
+      <div class="hero__scroll-arrow" aria-hidden="true">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+          <path d="M6 9L12 15L18 9" stroke="white" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </section>
+
+
+    <!-- =============================================
+         SECTION 2 : SEULEMENT SUR DISNEY+
+         Maquette desktop : texte à gauche + image Shogun+posters à droite
+         L'image original_4.jpeg contient déjà Shogun + la rangée de 7 posters
+         L'image original_3.jpeg est la version tablette/portrait de la même scène
+         ============================================= -->
+    <section class="exclusive" aria-labelledby="exclusive-title">
+      <div class="container">
+        <div class="exclusive__inner">
+
+          <!-- GAUCHE : texte de présentation -->
+          <div class="exclusive__left">
+            <h2 id="exclusive-title" class="section-eyebrow">Seulement sur Disney+</h2>
+            <p class="exclusive__description">
+              Des séries et productions originales exclusives que vous ne trouverez sur
+              aucun autre service de streaming.
+            </p>
+            <p class="exclusive__copyright">© 2023 FX Productions LLC</p>
+          </div>
+
+          <!-- DROITE : image composite (Shogun + posters) -->
+          <div class="exclusive__right">
+            <!--
+              Desktop (>768px) : original_4.jpeg — format paysage 2160×1050
+              Montre Shogun à droite + 7 posters alignés horizontalement à gauche
+            -->
+            <img
+              src="assets/img-disney-plus/original_4.jpeg"
+              alt="Shogun et autres productions originales Disney+"
+              class="exclusive__img exclusive__img--desktop"
+            />
+            <!--
+              Mobile/Tablette (<768px) : original_3.jpeg — format portrait 750×600
+              Même contenu mais adapté écran vertical
+            -->
+            <img
+              src="assets/img-disney-plus/original_3.jpeg"
+              alt="Shogun et autres productions originales Disney+"
+              class="exclusive__img exclusive__img--mobile"
+            />
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =============================================
+         SECTION 3 : TABLEAU DES ABONNEMENTS
+         3 colonnes : Standard avec pub / Standard / Premium
+         Utilise un <table> HTML pour l'accessibilité (lecteurs d'écran)
+         ============================================= -->
+    <section class="plans" aria-labelledby="plans-title">
+      <div class="container">
+        <h2 id="plans-title" class="section-title">Sélectionnez votre abonnement</h2>
+
+        <!-- overflow-x: auto dans le CSS pour le scroll horizontal sur mobile -->
+        <div class="plans__table-wrapper">
+          <table class="plans__table" aria-label="Comparatif des abonnements Disney+">
+            <thead>
+              <tr>
+                <th scope="col" class="plans__th plans__th--empty"></th>
+
+                <!-- Offre 1 : Standard avec pub -->
+                <th scope="col" class="plans__th">
+                  <div class="plan-header">
+                    <span class="plan-header__name">STANDARD<br/>AVEC PUB</span>
+                    <span class="plan-header__price">5,99 €<span class="plan-header__period">/mois</span></span>
+                    <a href="#" class="btn btn--plan">S'abonner</a>
+                  </div>
+                </th>
+
+                <!-- Offre 2 : Standard (colonne mise en avant) -->
+                <th scope="col" class="plans__th plans__th--highlighted">
+                  <div class="plan-header">
+                    <span class="plan-header__name">STANDARD</span>
+                    <span class="plan-header__price">8,99 €<span class="plan-header__period">/mois</span></span>
+                    <a href="#" class="btn btn--plan">S'abonner</a>
+                  </div>
+                </th>
+
+                <!-- Offre 3 : Premium -->
+                <th scope="col" class="plans__th">
+                  <div class="plan-header">
+                    <span class="plan-header__name">PREMIUM</span>
+                    <span class="plan-header__price">11,99 €<span class="plan-header__period">/mois</span></span>
+                    <a href="#" class="btn btn--plan">S'abonner</a>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <!-- Prix annuel -->
+              <tr>
+                <th scope="row" class="plans__feature-label">
+                  Profitez de 12 mois au prix de 10*
+                  <button class="plans__info-btn" aria-label="Info offre annuelle">
+                    <img src="assets/img-disney-plus/info-icon-default.d7d778093592e78ae02122d586a25e6a.svg" alt="" />
+                  </button>
+                </th>
+                <td class="plans__td">—</td>
+                <td class="plans__td plans__td--highlighted"><strong>87,92 € / an</strong></td>
+                <td class="plans__td"><strong>119,92 € / an</strong></td>
+              </tr>
+
+              <!-- Qualité vidéo -->
+              <tr>
+                <th scope="row" class="plans__feature-label">Qualité vidéo jusqu'à</th>
+                <td class="plans__td">1080p Full HD</td>
+                <td class="plans__td plans__td--highlighted">1080p Full HD</td>
+                <td class="plans__td">4K Ultra HD et HDR</td>
+              </tr>
+
+              <!-- Lectures simultanées -->
+              <tr>
+                <th scope="row" class="plans__feature-label">Lectures simultanées</th>
+                <td class="plans__td">2</td>
+                <td class="plans__td plans__td--highlighted">2</td>
+                <td class="plans__td">4</td>
+              </tr>
+
+              <!-- Téléchargements -->
+              <tr>
+                <th scope="row" class="plans__feature-label">Téléchargements</th>
+                <td class="plans__td">
+                  <img src="assets/img-disney-plus/logo-croix.svg" alt="Non" class="plans__icon plans__icon--cross"/>
+                </td>
+                <td class="plans__td plans__td--highlighted">
+                  <img src="assets/img-disney-plus/logo-valide-blanc.svg" alt="Oui" class="plans__icon plans__icon--check"/>
+                </td>
+                <td class="plans__td">
+                  <img src="assets/img-disney-plus/logo-valide-blanc.svg" alt="Oui" class="plans__icon plans__icon--check"/>
+                </td>
+              </tr>
+
+              <!-- Dolby Atmos -->
+              <tr>
+                <th scope="row" class="plans__feature-label">Prise en charge de Dolby Atmos</th>
+                <td class="plans__td">
+                  <img src="assets/img-disney-plus/logo-croix.svg" alt="Non" class="plans__icon plans__icon--cross"/>
+                </td>
+                <td class="plans__td plans__td--highlighted">
+                  <img src="assets/img-disney-plus/logo-croix.svg" alt="Non" class="plans__icon plans__icon--cross"/>
+                </td>
+                <td class="plans__td">
+                  <img src="assets/img-disney-plus/logo-valide-blanc.svg" alt="Oui" class="plans__icon plans__icon--check"/>
+                </td>
+              </tr>
+
+              <!-- Streaming sans pub -->
+              <tr>
+                <th scope="row" class="plans__feature-label">
+                  Streaming sans publicité**
+                  <button class="plans__info-btn" aria-label="Info streaming sans pub">
+                    <img src="assets/img-disney-plus/info-icon-default.d7d778093592e78ae02122d586a25e6a.svg" alt="" />
+                  </button>
+                </th>
+                <td class="plans__td">
+                  <img src="assets/img-disney-plus/logo-croix.svg" alt="Non" class="plans__icon plans__icon--cross"/>
+                </td>
+                <td class="plans__td plans__td--highlighted">
+                  <img src="assets/img-disney-plus/logo-valide-blanc.svg" alt="Oui" class="plans__icon plans__icon--check"/>
+                </td>
+                <td class="plans__td">
+                  <img src="assets/img-disney-plus/logo-valide-blanc.svg" alt="Oui" class="plans__icon plans__icon--check"/>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="plans__footnotes">
+          <p>* Économies par rapport à un abonnement mensuel.</p>
+          <p>** Vous pouvez malgré tout voir des publicités avant certains films, la promotion de produits et services Disney, des messages de parrainage et autres contenus promotionnels limités.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =============================================
+         SECTION 4 : REGARDEZ SELON VOS ENVIES
+         original.jpeg (desktop) : mockup 4 appareils (TV, laptop, tablette, mobile)
+         original_1.jpeg (tablette/mobile) : version portrait du même mockup
+         Les deux images montrent Grey's Anatomy, The Bear, Percy Jackson
+         ============================================= -->
+    <section class="watch" aria-labelledby="watch-title">
+      <div class="container">
+        <h2 id="watch-title" class="section-title">Regardez selon vos envies</h2>
+        <p class="section-subtitle">
+          Profitez des plus belles histoires au monde, partout et à tout moment.
+        </p>
+
+        <div class="watch__mockup">
+          <!-- Desktop : format très large 2160×1050 -->
+          <img
+            src="assets/img-disney-plus/original.jpeg"
+            alt="Mockup multi-appareils — Grey's Anatomy, The Bear, Percy Jackson"
+            class="watch__img watch__img--desktop"
+          />
+          <!-- Mobile/Tablette : format portrait 750×600 -->
+          <img
+            src="assets/img-disney-plus/original_1.jpeg"
+            alt="Mockup multi-appareils — Grey's Anatomy, The Bear, Percy Jackson"
+            class="watch__img watch__img--mobile"
+          />
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =============================================
+         SECTION 5 : 3 AVANTAGES
+         logo-bobine-film.png → divertissement
+         logo-ecran-couleur.png → appareils
+         original_9.png → contrôle parental (icône silhouette adulte+enfant)
+         ============================================= -->
+    <section class="benefits" aria-labelledby="benefits-title">
+      <h2 class="sr-only" id="benefits-title">Les avantages Disney+</h2>
+      <div class="container">
+        <div class="benefits__grid">
+
+          <article class="benefit-card">
+            <div class="benefit-card__icon" aria-hidden="true">
+              <img src="assets/img-disney-plus/logo-bobine-film.png" alt="" />
+            </div>
+            <h3 class="benefit-card__title">Un divertissement sans fin</h3>
+            <p class="benefit-card__desc">
+              Découvrez des milliers d'heures de séries, films et productions originales.
+            </p>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-card__icon" aria-hidden="true">
+              <img src="assets/img-disney-plus/logo-ecran-couleur.png" alt="" />
+            </div>
+            <h3 class="benefit-card__title">Disponible sur vos appareils préférés</h3>
+            <p class="benefit-card__desc">
+              Utilisez jusqu'à 4 appareils compatibles en simultané.
+            </p>
+          </article>
+
+          <!-- original_9.png = icône parental (silhouette adulte + enfant dans cercle) -->
+          <article class="benefit-card">
+            <div class="benefit-card__icon" aria-hidden="true">
+              <img src="assets/img-disney-plus/original_9.png" alt="" />
+            </div>
+            <h3 class="benefit-card__title">Un contrôle parental intuitif</h3>
+            <p class="benefit-card__desc">
+              Protégez votre famille avec un contrôle parental simple d'utilisation.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =============================================
+         SECTION 6 : FAQ — ACCORDÉON
+         Le JS ajoute/retire la classe "is-open" sur .faq__item
+         Le CSS gère la transition via max-height
+         ============================================= -->
+    <section class="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <h2 id="faq-title" class="section-title">Questions fréquentes</h2>
+
+        <div class="faq__list">
+
+          <div class="faq__item">
+            <button class="faq__question" aria-expanded="false" aria-controls="faq-1">
+              <span>Qu'est-ce que Disney ?</span>
+              <span class="faq__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq__answer" id="faq-1">
+              <p>Disney+ est un service de streaming à la demande proposant des contenus Disney, Pixar, Marvel, Star Wars, National Geographic, Star et bien plus encore.</p>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__question" aria-expanded="false" aria-controls="faq-2">
+              <span>Que puis-je regarder sur Disney+ ?</span>
+              <span class="faq__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq__answer" id="faq-2">
+              <p>Disney+ vous offre l'accès à des milliers de films et séries, des contenus originaux exclusifs, tout l'univers Marvel, Star Wars, Pixar et National Geographic.</p>
+              <ul>
+                <li>Des séries et films en streaming illimité</li>
+                <li>Des contenus Disney Originals exclusifs</li>
+                <li>Tous les films Marvel Cinematic Universe</li>
+                <li>Tous les films Star Wars et nouvelles séries</li>
+                <li>Les contenus National Geographic</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__question" aria-expanded="false" aria-controls="faq-3">
+              <span>Quel est le prix de l'abonnement Disney+ ?</span>
+              <span class="faq__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq__answer" id="faq-3">
+              <p>Trois formules :</p>
+              <ul>
+                <li><strong>Standard avec pub</strong> : 5,99 €/mois</li>
+                <li><strong>Standard</strong> : 8,99 €/mois ou 87,92 €/an</li>
+                <li><strong>Premium</strong> : 11,99 €/mois ou 119,92 €/an</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__question" aria-expanded="false" aria-controls="faq-4">
+              <span>Quels appareils et plateformes puis-je utiliser avec Disney+ ?</span>
+              <span class="faq__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq__answer" id="faq-4">
+              <p>Disney+ est disponible sur télévisions connectées (Amazon Fire TV, Apple TV, Samsung, LG, Roku), ordinateurs (Chrome, macOS, Windows), mobiles et tablettes (Android, iPhone, iPad), et consoles de jeux (PS4, PS5, Xbox One, Xbox Series X/S).</p>
+            </div>
+          </div>
+
+          <div class="faq__item">
+            <button class="faq__question" aria-expanded="false" aria-controls="faq-5">
+              <span>L'abonnement Disney+ comprend-il une durée d'engagement ?</span>
+              <span class="faq__icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq__answer" id="faq-5">
+              <p>Non, l'abonnement mensuel Disney+ ne comprend aucune durée d'engagement minimale. Vous pouvez annuler à tout moment. L'abonnement annuel couvre une période de 12 mois.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =============================================
+         SECTION 7 : APPAREILS COMPATIBLES
+         CSS Grid 4 colonnes → 2 sur tablette → 2 sur mobile
+         Icônes : logo-television.png, logo-ecran-ordinateur.png,
+                  logo-tablet.png, logo-manette.png
+         ============================================= -->
+    <section class="devices" aria-labelledby="devices-title">
+      <div class="container">
+        <h2 id="devices-title" class="section-title">Accessible sur vos appareils préférés</h2>
+
+        <div class="devices__grid">
+
+          <div class="device-category">
+            <div class="device-category__icon">
+              <img src="assets/img-disney-plus/logo-television.png" alt="" aria-hidden="true"/>
+            </div>
+            <h3 class="device-category__title">Télévisions</h3>
+            <ul class="device-category__list">
+              <li>Amazon Fire TV</li>
+              <li>Appareils Android TV</li>
+              <li>Apple TV</li>
+              <li>Chromecast</li>
+              <li>LG</li>
+              <li>Roku</li>
+              <li>Samsung</li>
+            </ul>
+          </div>
+
+          <div class="device-category">
+            <div class="device-category__icon">
+              <img src="assets/img-disney-plus/logo-ecran-ordinateur.png" alt="" aria-hidden="true"/>
+            </div>
+            <h3 class="device-category__title">Ordinateurs</h3>
+            <ul class="device-category__list">
+              <li>Chrome OS</li>
+              <li>MacOS</li>
+              <li>PC Windows</li>
+            </ul>
+          </div>
+
+          <div class="device-category">
+            <div class="device-category__icon">
+              <img src="assets/img-disney-plus/logo-tablet.png" alt="" aria-hidden="true"/>
+            </div>
+            <h3 class="device-category__title">Mobiles et tablettes</h3>
+            <ul class="device-category__list">
+              <li>Tablettes Amazon Fire</li>
+              <li>Tablettes Android</li>
+              <li>iPhone &amp; iPad</li>
+            </ul>
+          </div>
+
+          <div class="device-category">
+            <div class="device-category__icon">
+              <img src="assets/img-disney-plus/logo-manette.png" alt="" aria-hidden="true"/>
+            </div>
+            <h3 class="device-category__title">Consoles de jeux</h3>
+            <ul class="device-category__list">
+              <li>PS4</li>
+              <li>PS5</li>
+              <li>Xbox One</li>
+              <li>Xbox Series X</li>
+              <li>Xbox Series S</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =============================================
+       FOOTER
+       ============================================= -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer__logo">
+        <img src="assets/img-disney-plus/logo-disney.svg" alt="Disney+" />
+      </div>
+
+      <nav class="footer__nav" aria-label="Navigation du pied de page">
+        <ul class="footer__nav-list">
+          <li><a href="#">Propos de</a></li>
+          <li><a href="#">Conditions générales d'abonnement</a></li>
+          <li><a href="#">Politique de Respect de la Vie Privée</a></li>
+          <li><a href="#">Droits d'auteurs en PUB et au financement</a></li>
+          <li><a href="#">Partage de contenus</a></li>
+          <li><a href="#">Publicités relatives par centres d'intérêts</a></li>
+          <li><a href="#">Apprenez Disney+</a></li>
+          <li><a href="#">Aide</a></li>
+          <li><a href="#">Offres Disney</a></li>
+          <li><a href="#">Gérer vos préférences de confidentialité</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer__language">
+        <label for="language-select" class="sr-only">Langue</label>
+        <div class="footer__language-wrapper">
+          <img src="assets/img-disney-plus/logo-planete.svg" alt="" aria-hidden="true" />
+          <select id="language-select" class="footer__language-select">
+            <option value="fr">Français</option>
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="de">Deutsch</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="footer__copyright">
+        © 2025 Disney et ses sociétés affiliées. Tous droits réservés.
+      </p>
+
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
